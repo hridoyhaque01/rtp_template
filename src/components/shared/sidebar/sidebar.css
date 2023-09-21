@@ -1,0 +1,22 @@
+.sidebar .active {
+  color: white;
+  background: linear-gradient(
+    270deg,
+    rgba(255, 255, 255, 0.21) -254.09%,
+    rgba(255, 255, 255, 0) 99.84%
+  );
+}
+
+.sidebar .active svg,
+.sidebar .active svg path {
+  fill: white;
+}
+
+.sidebar .active.reports svg path {
+  fill: none;
+  stroke: white;
+}
+
+/* .sidebar .active.reports svg path {
+  fill: none;
+} */
