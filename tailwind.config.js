@@ -7,6 +7,11 @@ export default {
   ],
   theme: {
     extend: {
+      flex: {
+        "1/3": "0 0 calc(100% / 3)",
+        "1/2": "0 0 calc(100% / 2)",
+        full: "0 0 100%",
+      },
       colors: {
         transparent: "transparent",
 
@@ -29,4 +34,7 @@ export default {
     },
   },
   plugins: [require("preline/plugin"), require("daisyui")],
+  daisyui: {
+    themes: ["light"],
+  },
 };

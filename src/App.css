@@ -1,0 +1,29 @@
+html{
+  scroll-behavior: smooth;
+}
+
+.embla {
+  overflow: hidden;
+  width: 100%;
+}
+
+.embla__container {
+  display: flex;
+}
+
+.embla__slide {
+  position: relative;
+  flex: 0 0 100%;
+  width: 100%;
+}
+
+.scroll_show {
+  position: sticky;
+  top: 0;
+}
+
+.slider_wrap {
+  position: sticky;
+  --height: 440px;
+  top: calc((100vh - var(--height)) / 2);
+}

@@ -1,0 +1,17 @@
+.container {
+  overflow-y: hidden; /* Show vertical scrollbar */
+  position: relative; /* Ensure content stays within bounds */
+}
+
+/* Optional: Additional styling to ensure the scrollbar is visible */
+::-webkit-scrollbar {
+  width: 12px; /* Adjust the scrollbar width */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888; /* Style the scrollbar thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Style the scrollbar thumb on hover */
+}
