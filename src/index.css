@@ -1,3 +1,58 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  /* individual  */
+
+  .logo {
+    @apply max-w-[110px] sm:max-w-[124px] lg:max-w-[224px] h-auto duration-200;
+  }
+
+  /* common  */
+  .containerX {
+    @apply w-full max-w-[1176px] mx-auto;
+  }
+  .container2X {
+    @apply w-full max-w-[1280px] mx-auto;
+  }
+  .tag {
+    @apply px-6 py-2 rounded-full text-xs sm:text-base md:text-xl max-w-max text-black-700 bg-main-300 uppercase;
+  }
+  .title {
+    @apply text-3xl sm:text-5xl md:text-6xl font-bold leading-[120%] text-center md:text-left;
+  }
+
+  .subtitle {
+    @apply text-sm sm:text-base md:text-xl text-neutral-200;
+  }
+  .arrowBtn {
+    @apply flex items-center justify-center w-8 sm:w-12 md:w-[60px] aspect-square rounded-full border border-neutral-300 hover:border-black-900 hover:bg-black-800  disabled:hover:bg-transparent disabled:hover:border-neutral-300 duration-300 !important;
+  }
+
+  .btn_primary {
+    @apply flex items-center py-5 px-8 gap-2 bg-blue-500 font-bold text-xl rounded-full;
+  }
+
+  .arrowSvg {
+    @apply fill-black-800 group-disabled:fill-black-800 group-hover:fill-white duration-300;
+  }
+  .modal {
+    @apply fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 pointer-events-none opacity-0 invisible cursor-none transition-all ease-in-out;
+  }
+  .modal-wrpper {
+    @apply shadow-lg relative scale-100 transition-transform ease-in-out z-50;
+  }
+
+  .modal-backdrop {
+    @apply fixed top-0 left-0 w-full h-full;
+  }
+
+  .menu_item {
+    @apply p-2 lg:p-3 text-2xl md:text-base text-black-900 font-medium capitalize hover:text-blue-500 relative after:absolute after:content-[''] after:bottom-0 after:left-0 after:w-0 after:h-[3px] after:bg-blue-500 after:rounded-full after:hover:w-full duration-300 after:duration-300;
+  }
+
+  .active_item {
+    @apply relative after:absolute after:content-[''] after:bottom-0 after:left-0 after:h-[3px] after:bg-blue-500 after:rounded-full after:w-full;
+  }
+}

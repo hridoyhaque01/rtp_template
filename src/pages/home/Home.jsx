@@ -1,61 +1,11 @@
-import { useRect } from "@studio-freight/hamo";
-import { motion, useAnimation } from "framer-motion";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useWindowSize } from "react-use";
-
-const clamp = (min, value, max) => Math.min(Math.max(value, min), max);
-const mapRange = (from, to, value, min, max) =>
-  ((value - from) * (max - min)) / (to - from) + min;
-
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import useScreenWidth from "../../hooks/useScreenWidth";
+import useScrollParallax from "../../hooks/useScrollParallax";
 function Home() {
-  const elementRef = useRef(null);
-  const [wrapperRectRef, wrapperRect] = useRect();
-  const [elementRectRef, elementRect] = useRect();
-  const { height: windowHeight } = useWindowSize();
-  const [windowWidth, setWindowWidth] = useState();
-  const controls = useAnimation();
-
-  const handleScroll = useCallback(() => {
-    if (!wrapperRect || !elementRect || !elementRef.current) return;
-
-    const start = wrapperRect.top - windowHeight;
-    const end = wrapperRect.top + wrapperRect.height - windowHeight;
-
-    let progress = mapRange(start, end, window.scrollY, 0, 1);
-    progress = clamp(0, progress, 1);
-    const offset = 200;
-    const x = progress * (elementRect.width - windowWidth) - offset;
-
-    console.log({ x });
-
-    controls.start({
-      x: -x,
-      transition: { ease: "linear", duration: 0 },
-    });
-  }, [controls, elementRect, wrapperRect, windowHeight, windowWidth]);
-
-  useEffect(() => {
-    const onResize = () => {
-      setWindowWidth(
-        Math.min(window.innerWidth, document.documentElement.offsetWidth)
-      );
-    };
-
-    window.addEventListener("resize", onResize, false);
-    onResize();
-
-    return () => {
-      window.removeEventListener("resize", onResize, false);
-    };
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [handleScroll]);
+  const { elementRect, wrapperRectRef, elementRef, elementRectRef, controls } =
+    useScrollParallax();
+  const { width, ref } = useScreenWidth();
 
   const cards = [
     {
@@ -83,28 +33,47 @@ function Home() {
   return (
     <div className="w-full relative">
       <div className="h-screen bg-blue-300"></div>
-      <div className="pl-20  py-10">
-        <div
-          className="wrapper relative"
-          style={elementRect ? { height: elementRect.width + "px" } : {}}
-          ref={wrapperRectRef}
-        >
-          <div className="flex overflow-hidden slider_wrap">
-            <motion.div
-              className="flex"
-              ref={(node) => {
-                elementRef.current = node;
-                elementRectRef(node);
-              }}
-              animate={controls}
-            >
-              {cards.map((item) => (
-                <Card key={item.id} item={item}></Card>
-              ))}
-            </motion.div>
+      {/* carousel content start  */}
+      <div className="w-full bg-black-900 py-12 px-6">
+        <div className="w-full max-w-[1176px] mx-auto" ref={ref}>
+          <h2 className="tag">Our Portfolio</h2>
+          <div className="flex items-center justify-between gap-6 mt-3 sm:mt-4 md:mt-6">
+            <h1 className="title text-white">Brilliant works</h1>
           </div>
         </div>
+
+        <div className="ml-auto pl-6" style={{ width }}>
+          <div
+            style={elementRect ? { height: elementRect.width + "px" } : {}}
+            ref={wrapperRectRef}
+            className="relative"
+          >
+            <div className="flex overflow-hidden slider_wrap">
+              <motion.div
+                className="flex"
+                ref={(node) => {
+                  elementRef.current = node;
+                  elementRectRef(node);
+                }}
+                animate={controls}
+              >
+                {cards.map((item) => (
+                  <Card key={item.id} item={item}></Card>
+                ))}
+              </motion.div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <Link
+            to="/"
+            className="flex items-center justify-center max-w-max px-6 py-3 sm:my-5 text-xl bg-white rounded-full mx-auto"
+          >
+            All Portfolio
+          </Link>
+        </div>
       </div>
+      {/* carousel content start  */}
       <div className="h-screen bg-blue-300"></div>
     </div>
   );
@@ -114,9 +83,11 @@ export default Home;
 
 export const Card = ({ item }) => {
   return (
-    <div className="flex flex-col gap-1 p-8 border w-[643px] backdrop-blur-sm rounded-lg shrink-0">
-      <p className="text-3xl font-semibold">{item?.id}</p>
-      <p className="text-5xl font-semibold">{item?.text}</p>
+    <div className="p-3">
+      <div className="flex flex-col gap-1 p-6 border w-[643px] backdrop-blur-sm rounded-lg shrink-0 text-white">
+        <p className="text-3xl font-semibold">{item?.id}</p>
+        <p className="text-5xl font-semibold">{item?.text}</p>
+      </div>
     </div>
   );
 };

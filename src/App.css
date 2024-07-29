@@ -1,4 +1,4 @@
-html{
+html {
   scroll-behavior: smooth;
 }
 
@@ -24,6 +24,5 @@ html{
 
 .slider_wrap {
   position: sticky;
-  --height: 440px;
-  top: calc((100vh - var(--height)) / 2);
+  top: 0;
 }
