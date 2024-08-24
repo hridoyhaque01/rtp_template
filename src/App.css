@@ -1,0 +1,74 @@
+.pagination {
+  gap: 8px !important;
+}
+
+.page-item .page-link {
+  display: flex !important;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  line-height: normal;
+  padding: 0 !important;
+  border-radius: 4px !important;
+  font-size: 14px !important;
+  margin: 0 !important;
+  color: #141414 !important;
+  border: none !important;
+}
+
+.pagination .page-link:hover {
+  background-color: transparent !important;
+}
+
+.page-item.active .page-link {
+  background-color: #141414 !important;
+  color: #fff !important;
+}
+
+.page-item .page-link[aria-label="Previous"]::after {
+  content: url("./assets/images/arrow-left.svg");
+}
+
+.page-item .page-link[aria-label="Next"]::after {
+  content: url("./assets/images/arrow-right.svg");
+}
+
+.page-item .page-link[aria-label="Previous"]::after,
+.page-item .page-link[aria-label="Next"]::after {
+  position: absolute;
+  top: 2px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* quill  */
+
+.ql-toolbar.ql-snow {
+  border: none !important;
+  padding: 0px !important;
+}
+
+.ql-container.ql-snow {
+  border: none !important;
+  overflow: auto;
+  background-color: #f6f7f7;
+  border-radius: 4px;
+}
+
+/* customDatepicker  */
+
+@media screen and (max-width: 768px) {
+  .customDatepicker button {
+    width: 2rem;
+    height: 2rem;
+    font-size: 12px;
+  }
+
+  .customDatepicker .min-h-\[285px\] {
+    min-height: 240px;
+  }
+}
