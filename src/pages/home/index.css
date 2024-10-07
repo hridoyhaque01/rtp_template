@@ -1,0 +1,60 @@
+body {
+  font-family: "Arial", sans-serif;
+}
+
+.App {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.open-modal-btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.open-modal-btn:hover {
+  background-color: #0056b3;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  width: 80%;
+  text-align: center;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #aaa;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #000;
+}

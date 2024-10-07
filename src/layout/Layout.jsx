@@ -1,5 +1,7 @@
 import { Outlet } from "react-router-dom";
+import useLenis from "../hooks/useLenis";
 function Layout() {
+  useLenis();
   return (
     <Outlet></Outlet>
 

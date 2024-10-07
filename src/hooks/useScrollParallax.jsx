@@ -4,7 +4,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useWindowSize } from "react-use";
 import { clamp, mapRange } from "../lib/helpers";
 
-function useScrollParallax() {
+function useScrollParallax(obj) {
+  const { offset = 300 } = obj || {};
   const elementRef = useRef(null);
   const [wrapperRectRef, wrapperRect] = useRect();
   const [elementRectRef, elementRect] = useRect();
@@ -15,13 +16,12 @@ function useScrollParallax() {
   const handleScroll = useCallback(() => {
     if (!wrapperRect || !elementRect || !elementRef.current) return;
 
-    const start = wrapperRect.top - windowHeight;
+    const start = wrapperRect.top + offset - windowHeight;
     const end = wrapperRect.top + wrapperRect.height - windowHeight;
 
     let progress = mapRange(start, end, window.scrollY, 0, 1);
     progress = clamp(0, progress, 1);
-    const offset = 200;
-    const x = progress * (elementRect.width - windowWidth) - offset;
+    const x = progress * (elementRect.width - windowWidth);
     controls.start({
       x: -x,
       transition: { ease: "linear", duration: 0 },
@@ -56,7 +56,7 @@ function useScrollParallax() {
     wrapperRectRef,
     elementRef,
     elementRectRef,
-    controls
+    controls,
   };
 }
 
